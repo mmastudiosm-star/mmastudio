@@ -16,6 +16,7 @@ TEAM_MEMBERS = [
     {"name": "سبحان", "role": "مدیر", "skills": "Python, Django, React, Docker"},
     {"name": "محمد مهدی", "role": "مدیر", "skills": "Python, FastAPI, PostgreSQL"},
     {"name": "مانی کریمی", "role": "برنامه‌نویس", "skills": "React, Next.js, Tailwind CSS"},
+    {"name": "پرهام", "role": "برنامه‌نویس سطح ۴ | فعال اجتماعی", "skills": "Python, HTML, CSS, JavaScript"},
 ]
 
 # پروژه‌های انجام شده
