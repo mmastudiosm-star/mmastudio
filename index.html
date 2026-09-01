@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لایتنینگ استودیو</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #0f0f1a;
+        color: #e0e0e0;
+        line-height: 1.7;
+        padding: 20px;
+        direction: rtl;
+    }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        padding: 40px 50px;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    h1 {
+        font-size: 3rem;
+        background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 5px;
+        letter-spacing: 2px;
+    }
+    .subtitle {
+        text-align: center;
+        color: #aaa;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+    .section {
+        margin-bottom: 40px;
+    }
+    .section h2 {
+        font-size: 2rem;
+        color: #fff;
+        border-right: 5px solid #f5576c;
+        padding-right: 15px;
+        margin-bottom: 20px;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    .card {
+        background: rgba(255,255,255,0.06);
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid #2a2a3a;
+        transition: transform 0.3s ease, border-color 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: #4facfe;
+    }
+    .card h3 {
+        color: #f093fb;
+        margin-bottom: 5px;
+    }
+    .card .role {
+        color: #4facfe;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    .card .skills {
+        color: #aaa;
+        font-size: 0.85rem;
+        margin-top: 10px;
+        background: #1a1a2e;
+        padding: 5px 12px;
+        border-radius: 30px;
+        display: inline-block;
+    }
+    .project-card {
+        background: rgba(255,255,255,0.04);
+        padding: 20px;
+        border-radius: 16px;
+        border-right: 4px solid #f5576c;
+        margin-bottom: 15px;
+    }
+    .project-card h3 {
+        color: #fff;
+    }
+    .project-card .tech {
+        color: #f093fb;
+        font-size: 0.8rem;
+        background: #1a1a2e;
+        padding: 3px 12px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 8px;
+    }
+    /* استایل دکمه دانلود */
+    .download-btn {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 20px;
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+    }
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
+        background: linear-gradient(135deg, #f5576c, #4facfe);
+    }
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #2a2a3a;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    .contact-info {
+        background: #1a1a2e;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        direction: ltr;
+    }
+    .contact-info span {
+        color: #4facfe;
+        font-weight: bold;
+    }
+    .contact-info a {
+        color: #4facfe;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .contact-info a:hover {
+        text-decoration: underline;
+        color: #f093fb;
+    }
+    @media (max-width: 700px) {
+        .container { padding: 20px; }
+        h1 { font-size: 2rem; }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ لایتنینگ استودیو</h1>
+        <div class="subtitle">گروه برنامه‌نویسی و توسعه نرم‌افزار</div>
+
+        <div class="section">
+            <h2>درباره ما</h2>
+            <p style="font-size:1.1rem; color:#ccc;">
+                ما یک تیم جوان و خلاق از برنامه‌نویسان و مهندسان نرم‌افزار هستیم. 
+                هدف ما ساخت محصولات باکیفیت، یادگیری مداوم و به‌اشتراک‌گذاری دانش است. 
+                در «لایتنینگ استودیو» اعتقاد داریم که کد خوب، دنیای بهتری می‌سازد.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>👨‍💻 اعضای تیم</h2>
+            <div class="card-grid">
+                
+        <div class="card">
+            <h3>سبحان</h3>
+            <div class="role">مدیر</div>
+            <div class="skills">Python, Django, React, Docker</div>
+        </div>
+        
+        <div class="card">
+            <h3>محمد مهدی</h3>
+            <div class="role">مدیر</div>
+            <div class="skills">Python, FastAPI, PostgreSQL</div>
+        </div>
+        
+        <div class="card">
+            <h3>مانی کریمی</h3>
+            <div class="role">برنامه‌نویس</div>
+            <div class="skills">React, Next.js, Tailwind CSS</div>
+        </div>
+        
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 پروژه‌های ما</h2>
+            
+        <div class="project-card">
+            <h3>🔹 تماس‌های اضطراری</h3>
+            <p>دسترسی سریع به تماس‌های ضروری</p>
+            <div class="tech">Django + React</div>
+            <a href="https://myket.ir/app/appinventor.ai_mmastudio_s_m.tamas" target="_blank" class="download-btn">📥 دانلود از مایکت</a>
+        </div>
+        
+        <div class="project-card">
+            <h3>🔹 هوش مصنوعی Star AI</h3>
+            <p>در دست توسعه</p>
+            <div class="tech">TensorFlow, PyTorch, FastAPI</div>
+            
+        </div>
+        
+        <div class="project-card">
+            <h3>🔹 پیامرسان فوق پیشرفته</h3>
+            <p>پیامرسان امن و پرسرعت با قابلیت‌های پیشرفته ارتباطی</p>
+            <div class="tech">FastAPI + WebSocket + React</div>
+            
+        </div>
+        
+        </div>
+
+        <div class="section">
+            <h2>📬 ارتباط با ما</h2>
+            <div class="contact-info">
+                <span>✉️</span> mmastudio.s.m@gmail.com &nbsp;|&nbsp; 
+                <span>📱</span> <a href="https://ble.ir/mmastudio" target="_blank">https://ble.ir/mmastudio</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 تمامی حقوق برای گروه لایتنینگ استودیو محفوظ است.
+        </div>
+    </div>
+</body>
+</html>
