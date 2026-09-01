@@ -130,6 +130,47 @@
         box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
         background: linear-gradient(135deg, #f5576c, #4facfe);
     }
+    /* استایل کارت ویدیو */
+    .video-card {
+        background: rgba(255,255,255,0.04);
+        padding: 20px;
+        border-radius: 16px;
+        border-right: 4px solid #4facfe;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease, border-color 0.3s;
+    }
+    .video-card:hover {
+        transform: translateX(-5px);
+        border-color: #f093fb;
+    }
+    .video-card h3 {
+        color: #fff;
+        font-size: 1.2rem;
+    }
+    .video-card p {
+        color: #ccc;
+        margin: 8px 0;
+    }
+    .video-card .watch-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 25px;
+        background: linear-gradient(135deg, #4facfe, #43e97b);
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+    }
+    .video-card .watch-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(79, 172, 254, 0.5);
+        background: linear-gradient(135deg, #43e97b, #4facfe);
+    }
     .footer {
         text-align: center;
         margin-top: 40px;
@@ -225,6 +266,17 @@
             <p>پیامرسان امن و پرسرعت با قابلیت‌های پیشرفته ارتباطی</p>
             <div class="tech">FastAPI + WebSocket + React</div>
             
+        </div>
+        
+        </div>
+
+        <div class="section">
+            <h2>🎥 ویدیوها</h2>
+            
+        <div class="video-card">
+            <h3>🎬 آموزش اسکرچ جونیور پارت ۱: بازی خروس و طوفان</h3>
+            <p>آموزش برنامه‌نویسی کودکان با اسکرچ جونیور - ساخت بازی جذاب</p>
+            <a href="https://www.aparat.com/v/bewg9bw" target="_blank" class="watch-btn">▶️ تماشا در آپارات</a>
         </div>
         
         </div>
