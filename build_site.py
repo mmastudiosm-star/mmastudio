@@ -28,7 +28,7 @@ PROJECTS = [
         "link": "https://myket.ir/app/appinventor.ai_mmastudio_s_m.tamas"
     },
     {"title": "هوش مصنوعی Star AI", "desc": "در دست توسعه", "tech": "TensorFlow, PyTorch, FastAPI"},
-    {"title": "پیامرسان فوق پیشرفته", "desc": "پیامرسان امن و پرسرعت با قابلیت‌های پیشرفته ارتباطی", "tech": "FastAPI + WebSocket + React"},
+    {"title": "پیامرسان فوق پیشرفته", "desc": "در دست توسعه", "tech": "FastAPI + WebSocket + React"},
 ]
 
 # ==========================================
