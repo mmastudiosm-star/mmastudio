@@ -12,39 +12,200 @@
     }
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #0f0f1a;
         color: #e0e0e0;
         line-height: 1.7;
         padding: 20px;
         direction: rtl;
+        min-height: 100vh;
+        overflow: hidden;
+        transition: background 0.8s ease, color 0.8s ease;
     }
+    /* ===== تم تاریک (پیش‌فرض) ===== */
+    body.dark-mode {
+        background: #0a0a15;
+        color: #e0e0e0;
+    }
+    body.dark-mode .container {
+        background: rgba(10, 10, 21, 0.65);
+        border-color: rgba(255,255,255,0.06);
+    }
+    body.dark-mode .nav-menu {
+        background: rgba(255,255,255,0.04);
+        border-color: #2a2a3a;
+    }
+    body.dark-mode .card {
+        background: rgba(255,255,255,0.05);
+        border-color: #2a2a3a;
+    }
+    body.dark-mode .project-card {
+        background: rgba(255,255,255,0.04);
+    }
+    body.dark-mode .contact-info {
+        background: #1a1a2e;
+        border-color: #2a2a3a;
+    }
+    body.dark-mode .subtitle {
+        border-color: #333;
+    }
+    body.dark-mode .footer {
+        border-color: #2a2a3a;
+    }
+    
+    /* ===== تم روشن ===== */
+    body.light-mode {
+        background: #f0f2f5;
+        color: #1a1a2e;
+    }
+    body.light-mode .container {
+        background: rgba(255, 255, 255, 0.85);
+        border-color: rgba(0,0,0,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    body.light-mode .nav-menu {
+        background: rgba(0,0,0,0.04);
+        border-color: #d0d0d0;
+    }
+    body.light-mode .nav-btn {
+        color: #1a1a2e;
+        background: rgba(0,0,0,0.05);
+    }
+    body.light-mode .nav-btn:hover {
+        color: #fff;
+    }
+    body.light-mode .card {
+        background: rgba(0,0,0,0.04);
+        border-color: #d0d0d0;
+    }
+    body.light-mode .card h3 {
+        color: #f5576c;
+    }
+    body.light-mode .card .role {
+        color: #4facfe;
+    }
+    body.light-mode .card .skills {
+        background: #e8e8e8;
+        color: #333;
+    }
+    body.light-mode .project-card {
+        background: rgba(0,0,0,0.03);
+        border-color: #d0d0d0;
+    }
+    body.light-mode .project-card h3 {
+        color: #1a1a2e;
+    }
+    body.light-mode .project-card .tech {
+        background: #e8e8e8;
+        color: #f5576c;
+    }
+    body.light-mode .contact-info {
+        background: #e8e8e8;
+        border-color: #d0d0d0;
+    }
+    body.light-mode .contact-info span {
+        color: #f5576c;
+    }
+    body.light-mode .contact-info a {
+        color: #4facfe;
+    }
+    body.light-mode .subtitle {
+        border-color: #d0d0d0;
+        color: #555;
+    }
+    body.light-mode .footer {
+        border-color: #d0d0d0;
+        color: #888;
+    }
+    body.light-mode .section h2 {
+        color: #1a1a2e;
+        border-color: #f5576c;
+    }
+    body.light-mode .section h2 {
+        text-shadow: none;
+    }
+    body.light-mode .container::-webkit-scrollbar-thumb {
+        background: #f5576c;
+    }
+    body.light-mode h1 {
+        background: linear-gradient(135deg, #f5576c, #4facfe, #f093fb);
+        background-size: 300% 300%;
+        animation: gradientShift 4s ease-in-out infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    body.light-mode .download-btn {
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+    }
+    body.light-mode .download-btn:hover {
+        background: linear-gradient(135deg, #f5576c, #4facfe);
+    }
+    
+    #lines-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+    }
+    body.light-mode #lines-canvas {
+        opacity: 0.3;
+    }
+    
     .container {
+        position: relative;
+        z-index: 1;
         max-width: 1100px;
         margin: 0 auto;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         padding: 40px 50px;
         border-radius: 24px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.06);
+        max-height: 95vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #4facfe transparent;
+        transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+    }
+    .container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background: #4facfe;
+        border-radius: 10px;
     }
     h1 {
         font-size: 3rem;
-        background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe);
+        background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe, #43e97b);
+        background-size: 300% 300%;
+        animation: gradientShift 4s ease-in-out infinite;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         text-align: center;
         margin-bottom: 5px;
         letter-spacing: 2px;
+        transition: background 0.8s ease;
+    }
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
     .subtitle {
         text-align: center;
-        color: #aaa;
         font-size: 1.2rem;
         border-bottom: 2px solid #333;
         padding-bottom: 20px;
         margin-bottom: 30px;
+        transition: all 0.8s ease;
     }
     .nav-menu {
         display: flex;
@@ -53,13 +214,13 @@
         flex-wrap: wrap;
         margin-bottom: 30px;
         padding: 15px;
-        background: rgba(255,255,255,0.05);
         border-radius: 16px;
         border: 1px solid #2a2a3a;
+        transition: all 0.8s ease;
     }
     .nav-btn {
         padding: 10px 25px;
-        background: rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.06);
         color: #e0e0e0;
         border-radius: 30px;
         text-decoration: none;
@@ -83,7 +244,6 @@
     .nav-btn.video-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 25px rgba(245, 87, 108, 0.5);
-        background: linear-gradient(135deg, #f5576c, #f093fb);
     }
     .section {
         margin-bottom: 40px;
@@ -94,6 +254,8 @@
         border-right: 5px solid #f5576c;
         padding-right: 15px;
         margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(245, 87, 108, 0.3);
+        transition: all 0.8s ease;
     }
     .card-grid {
         display: grid;
@@ -101,52 +263,60 @@
         gap: 20px;
     }
     .card {
-        background: rgba(255,255,255,0.06);
         padding: 20px;
         border-radius: 16px;
         border: 1px solid #2a2a3a;
-        transition: transform 0.3s ease, border-color 0.3s;
+        transition: all 0.4s ease, background 0.8s ease, border-color 0.8s ease;
     }
     .card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-8px) scale(1.02);
         border-color: #4facfe;
+        box-shadow: 0 8px 30px rgba(79, 172, 254, 0.15);
     }
     .card h3 {
         color: #f093fb;
         margin-bottom: 5px;
+        transition: color 0.8s ease;
     }
     .card .role {
         color: #4facfe;
         font-weight: bold;
         font-size: 0.9rem;
+        transition: color 0.8s ease;
     }
     .card .skills {
-        color: #aaa;
         font-size: 0.85rem;
         margin-top: 10px;
         background: #1a1a2e;
         padding: 5px 12px;
         border-radius: 30px;
         display: inline-block;
+        transition: all 0.8s ease;
     }
     .project-card {
-        background: rgba(255,255,255,0.04);
         padding: 20px;
         border-radius: 16px;
         border-right: 4px solid #f5576c;
         margin-bottom: 15px;
+        transition: all 0.3s ease, background 0.8s ease, border-color 0.8s ease;
+    }
+    .project-card:hover {
+        transform: translateX(-5px);
+        border-color: #4facfe;
+        box-shadow: 0 4px 20px rgba(79, 172, 254, 0.1);
     }
     .project-card h3 {
         color: #fff;
+        transition: color 0.8s ease;
     }
     .project-card .tech {
-        color: #f093fb;
         font-size: 0.8rem;
         background: #1a1a2e;
         padding: 3px 12px;
         border-radius: 30px;
         display: inline-block;
         margin-top: 8px;
+        transition: all 0.8s ease;
     }
     .download-btn {
         display: inline-block;
@@ -173,28 +343,31 @@
         margin-top: 40px;
         padding-top: 20px;
         border-top: 1px solid #2a2a3a;
-        color: #666;
         font-size: 0.9rem;
+        transition: all 0.8s ease;
     }
     .contact-info {
-        background: #1a1a2e;
         padding: 15px;
         border-radius: 12px;
         text-align: center;
         direction: ltr;
+        border: 1px solid #2a2a3a;
+        transition: all 0.8s ease;
     }
     .contact-info span {
         color: #4facfe;
         font-weight: bold;
+        transition: color 0.8s ease;
     }
     .contact-info a {
         color: #4facfe;
         text-decoration: none;
         font-weight: bold;
+        transition: color 0.3s;
     }
     .contact-info a:hover {
-        text-decoration: underline;
         color: #f093fb;
+        text-decoration: underline;
     }
     @media (max-width: 700px) {
         .container { padding: 20px; }
@@ -204,7 +377,7 @@
     }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <div class="container">
         <h1>⚡ لایتنینگ استودیو</h1>
         <div class="subtitle">گروه برنامه‌نویسی و توسعه نرم‌افزار</div>
@@ -216,7 +389,7 @@
 
         <div class="section">
             <h2>درباره ما</h2>
-            <p style="font-size:1.1rem; color:#ccc;">
+            <p style="font-size:1.1rem;">
                 ما یک تیم جوان و خلاق از برنامه‌نویسان و مهندسان نرم‌افزار هستیم. 
                 هدف ما ساخت محصولات باکیفیت، یادگیری مداوم و به‌اشتراک‌گذاری دانش است. 
                 در «لایتنینگ استودیو» اعتقاد داریم که کد خوب، دنیای بهتری می‌سازد.
@@ -292,5 +465,157 @@
             © 2026 تمامی حقوق برای گروه لایتنینگ استودیو محفوظ است.
         </div>
     </div>
+    
+    <script>
+    // خطوط نوری
+    (function() {
+        const canvas = document.createElement('canvas');
+        canvas.id = 'lines-canvas';
+        document.body.prepend(canvas);
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        const LINE_COUNT = 45;
+        const LINE_LENGTH_MIN = 0.3;
+        const LINE_LENGTH_MAX = 0.9;
+        const SPEED_MIN = 1.5;
+        const SPEED_MAX = 4.5;
+        const COLORS = [[79,172,254],[240,147,251],[245,87,108],[67,233,123],[255,215,0],[0,255,255],[255,100,200]];
+        class LightLine {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.angle = Math.random() * Math.PI * 2;
+                const lengthRatio = Math.random() * (LINE_LENGTH_MAX - LINE_LENGTH_MIN) + LINE_LENGTH_MIN;
+                this.length = lengthRatio * Math.max(w, h);
+                this.speed = Math.random() * (SPEED_MAX - SPEED_MIN) + SPEED_MIN;
+                this.thickness = Math.random() * 3 + 1.5;
+                this.baseOpacity = Math.random() * 0.3 + 0.2;
+                const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                this.r = color[0]; this.g = color[1]; this.b = color[2];
+                this.twinkleSpeed = Math.random() * 0.03 + 0.01;
+                this.twinkleOffset = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.twinkleOffset += this.twinkleSpeed;
+                const margin = this.length * 0.5;
+                if (this.x < -margin) this.x = w + margin;
+                if (this.x > w + margin) this.x = -margin;
+                if (this.y < -margin) this.y = h + margin;
+                if (this.y > h + margin) this.y = -margin;
+            }
+            draw() {
+                const twinkle = Math.sin(this.twinkleOffset) * 0.3 + 0.7;
+                const opacity = this.baseOpacity * twinkle;
+                const endX = this.x - Math.cos(this.angle) * this.length;
+                const endY = this.y - Math.sin(this.angle) * this.length;
+                const gradient = ctx.createLinearGradient(this.x, this.y, endX, endY);
+                gradient.addColorStop(0, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.9})`);
+                gradient.addColorStop(0.3, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.6})`);
+                gradient.addColorStop(0.7, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.3})`);
+                gradient.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.15})`;
+                ctx.lineWidth = this.thickness * 4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.05})`;
+                ctx.lineWidth = this.thickness * 10;
+                ctx.stroke();
+                const glowSize = this.thickness * 2.5;
+                const glowGradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowSize * 2);
+                glowGradient.addColorStop(0, `rgba(255, 255, 255, ${opacity * 0.8})`);
+                glowGradient.addColorStop(0.3, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.6})`);
+                glowGradient.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, glowSize * 2, 0, Math.PI * 2);
+                ctx.fillStyle = glowGradient;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, glowSize * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.9})`;
+                ctx.fill();
+            }
+        }
+        let lines = [];
+        function initLines() {
+            lines = [];
+            for (let i = 0; i < LINE_COUNT; i++) {
+                lines.push(new LightLine());
+            }
+        }
+        initLines();
+        function animate() {
+            // تشخیص تم برای تنظیم رنگ پس‌زمینه
+            const isLight = document.body.classList.contains('light-mode');
+            const bgColor = isLight ? 'rgba(240, 242, 245, 0.15)' : 'rgba(10, 10, 21, 0.2)';
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, w, h);
+            lines.forEach(line => { line.update(); line.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                resize();
+                initLines();
+            }, 300);
+        });
+    })();
+    </script>
+    <script>
+    // ===== تغییر خودکار تم بر اساس ساعت =====
+    (function() {
+        function setTheme() {
+            const now = new Date();
+            const hours = now.getHours();
+            const body = document.body;
+            
+            // ساعت 6 صبح تا 6 عصر = تم روشن
+            // ساعت 6 عصر تا 6 صبح = تم تاریک
+            if (hours >= 6 && hours < 18) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            }
+        }
+        
+        // اجرای اولیه
+        setTheme();
+        
+        // بررسی هر 30 ثانیه (برای مواقعی که صفحه باز می‌مونه)
+        setInterval(setTheme, 30000);
+        
+        // همچنین هنگام visibility change (زمانی که کاربر به صفحه برمی‌گردد)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                setTheme();
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
