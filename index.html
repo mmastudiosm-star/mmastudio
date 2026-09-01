@@ -20,7 +20,6 @@
         overflow: hidden;
         transition: background 0.8s ease, color 0.8s ease;
     }
-    /* ===== تم تاریک (پیش‌فرض) ===== */
     body.dark-mode {
         background: #0a0a15;
         color: #e0e0e0;
@@ -50,8 +49,14 @@
     body.dark-mode .footer {
         border-color: #2a2a3a;
     }
+    body.dark-mode .countdown-container {
+        background: rgba(245, 87, 108, 0.1);
+        border-color: #f5576c;
+    }
+    body.dark-mode .countdown-container .countdown-text {
+        color: #f093fb;
+    }
     
-    /* ===== تم روشن ===== */
     body.light-mode {
         background: #f0f2f5;
         color: #1a1a2e;
@@ -93,10 +98,6 @@
     body.light-mode .project-card h3 {
         color: #1a1a2e;
     }
-    body.light-mode .project-card .tech {
-        background: #e8e8e8;
-        color: #f5576c;
-    }
     body.light-mode .contact-info {
         background: #e8e8e8;
         border-color: #d0d0d0;
@@ -118,8 +119,6 @@
     body.light-mode .section h2 {
         color: #1a1a2e;
         border-color: #f5576c;
-    }
-    body.light-mode .section h2 {
         text-shadow: none;
     }
     body.light-mode .container::-webkit-scrollbar-thumb {
@@ -138,6 +137,13 @@
     }
     body.light-mode .download-btn:hover {
         background: linear-gradient(135deg, #f5576c, #4facfe);
+    }
+    body.light-mode .countdown-container {
+        background: rgba(245, 87, 108, 0.08);
+        border-color: #f5576c;
+    }
+    body.light-mode .countdown-container .countdown-text {
+        color: #f5576c;
     }
     
     #lines-canvas {
@@ -309,14 +315,27 @@
         color: #fff;
         transition: color 0.8s ease;
     }
-    .project-card .tech {
-        font-size: 0.8rem;
-        background: #1a1a2e;
-        padding: 3px 12px;
-        border-radius: 30px;
+    .countdown-container {
+        margin-top: 12px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        border: 1px solid;
         display: inline-block;
-        margin-top: 8px;
+        text-align: center;
         transition: all 0.8s ease;
+    }
+    .countdown-container .countdown-label {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .countdown-container .countdown-text {
+        font-size: 1.1rem;
+        font-weight: bold;
+        font-family: 'Courier New', monospace;
+        direction: ltr;
+        display: block;
     }
     .download-btn {
         display: inline-block;
@@ -374,6 +393,7 @@
         h1 { font-size: 2rem; }
         .nav-menu { gap: 10px; }
         .nav-btn { padding: 8px 18px; font-size: 0.85rem; }
+        .countdown-container .countdown-text { font-size: 0.9rem; }
     }
     </style>
 </head>
@@ -403,25 +423,25 @@
         <div class="card">
             <h3>سبحان</h3>
             <div class="role">مدیر</div>
-            <div class="skills">Python, Django, React, Docker</div>
+            <div class="skills">برنامه‌نویس</div>
         </div>
         
         <div class="card">
             <h3>محمد مهدی</h3>
             <div class="role">مدیر</div>
-            <div class="skills">Python, FastAPI, PostgreSQL</div>
+            <div class="skills">برنامه‌نویس</div>
         </div>
         
         <div class="card">
             <h3>مانی کریمی</h3>
             <div class="role">برنامه‌نویس</div>
-            <div class="skills">React, Next.js, Tailwind CSS</div>
+            <div class="skills">برنامه‌نویس</div>
         </div>
         
         <div class="card">
             <h3>پرهام</h3>
             <div class="role">برنامه‌نویس سطح ۴ | فعال اجتماعی</div>
-            <div class="skills">Python, HTML, CSS, JavaScript</div>
+            <div class="skills">برنامه‌نویس</div>
         </div>
         
             </div>
@@ -433,21 +453,26 @@
         <div class="project-card">
             <h3>🔹 تماس‌های اضطراری</h3>
             <p>دسترسی سریع به تماس‌های ضروری</p>
-            <div class="tech">Django + React</div>
+            
             <a href="https://myket.ir/app/appinventor.ai_mmastudio_s_m.tamas" target="_blank" class="download-btn">📥 دانلود از مایکت</a>
         </div>
         
         <div class="project-card">
             <h3>🔹 هوش مصنوعی Star AI</h3>
             <p>در دست توسعه</p>
-            <div class="tech">TensorFlow, PyTorch, FastAPI</div>
+            
+            <div class="countdown-container">
+                <span class="countdown-label">⏳ زمان تقریبی تا انتشار</span>
+                <span class="countdown-text">ماه ۲ روز ۱۴ ساعت ۰ دقیقه ۰ ثانیه مانده</span>
+            </div>
+            
             
         </div>
         
         <div class="project-card">
             <h3>🔹 پیامرسان فوق پیشرفته</h3>
-            <p>در دست توسعه</p>
-            <div class="tech">FastAPI + WebSocket + React</div>
+            <p>در حال تصمیم‌گیری</p>
+            
             
         </div>
         
@@ -467,7 +492,6 @@
     </div>
     
     <script>
-    // خطوط نوری
     (function() {
         const canvas = document.createElement('canvas');
         canvas.id = 'lines-canvas';
@@ -565,7 +589,6 @@
         }
         initLines();
         function animate() {
-            // تشخیص تم برای تنظیم رنگ پس‌زمینه
             const isLight = document.body.classList.contains('light-mode');
             const bgColor = isLight ? 'rgba(240, 242, 245, 0.15)' : 'rgba(10, 10, 21, 0.2)';
             ctx.fillStyle = bgColor;
@@ -585,15 +608,11 @@
     })();
     </script>
     <script>
-    // ===== تغییر خودکار تم بر اساس ساعت =====
     (function() {
         function setTheme() {
             const now = new Date();
             const hours = now.getHours();
             const body = document.body;
-            
-            // ساعت 6 صبح تا 6 عصر = تم روشن
-            // ساعت 6 عصر تا 6 صبح = تم تاریک
             if (hours >= 6 && hours < 18) {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
@@ -602,19 +621,39 @@
                 body.classList.add('dark-mode');
             }
         }
-        
-        // اجرای اولیه
         setTheme();
-        
-        // بررسی هر 30 ثانیه (برای مواقعی که صفحه باز می‌مونه)
         setInterval(setTheme, 30000);
-        
-        // همچنین هنگام visibility change (زمانی که کاربر به صفحه برمی‌گردد)
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 setTheme();
             }
         });
+    })();
+    </script>
+    <script>
+    (function() {
+        const targetDate = new Date('2026-11-15T00:00:00').getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance <= 0) {
+                document.querySelectorAll('.countdown-text').forEach(el => {
+                    el.textContent = 'منتشر شده! 🎉';
+                });
+                return;
+            }
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            let text = 'ماه ۲ روز ۱۴ ساعت ';
+            text += minutes + ' دقیقه ';
+            text += seconds + ' ثانیه مانده';
+            document.querySelectorAll('.countdown-text').forEach(el => {
+                el.textContent = text;
+            });
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     })();
     </script>
 </body>
