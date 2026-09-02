@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توضیحات - تماس‌های اضطراری | لایتنینگ استودیو</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #e0e0e0;
+        line-height: 1.8;
+        padding: 20px;
+        direction: rtl;
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition: background 0.8s ease, color 0.8s ease;
+    }
+    .fade-element {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    body.dark-mode {
+        background: #0a0a15;
+        color: #e0e0e0;
+    }
+    body.dark-mode .container {
+        background: rgba(10, 10, 21, 0.65);
+        border-color: rgba(255,255,255,0.06);
+    }
+    body.dark-mode .nav-menu {
+        background: rgba(255,255,255,0.04);
+        border-color: #2a2a3a;
+    }
+    body.dark-mode .subtitle {
+        border-color: #333;
+    }
+    body.dark-mode .footer {
+        border-color: #2a2a3a;
+    }
+    body.dark-mode .feature-list li {
+        background: rgba(255,255,255,0.04);
+        border-color: #2a2a3a;
+    }
+    
+    body.light-mode {
+        background: #f0f2f5;
+        color: #1a1a2e;
+    }
+    body.light-mode .container {
+        background: rgba(255, 255, 255, 0.85);
+        border-color: rgba(0,0,0,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    body.light-mode .nav-menu {
+        background: rgba(0,0,0,0.04);
+        border-color: #d0d0d0;
+    }
+    body.light-mode .nav-btn {
+        color: #1a1a2e;
+        background: rgba(0,0,0,0.05);
+    }
+    body.light-mode .nav-btn:hover {
+        color: #fff;
+    }
+    body.light-mode .subtitle {
+        border-color: #d0d0d0;
+        color: #555;
+    }
+    body.light-mode .footer {
+        border-color: #d0d0d0;
+        color: #888;
+    }
+    body.light-mode h1 {
+        background: linear-gradient(135deg, #f5576c, #4facfe, #f093fb);
+        background-size: 300% 300%;
+        animation: gradientShift 4s ease-in-out infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    body.light-mode .back-btn {
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+    }
+    body.light-mode .back-btn:hover {
+        background: linear-gradient(135deg, #f5576c, #4facfe);
+    }
+    body.light-mode .feature-list li {
+        background: rgba(0,0,0,0.04);
+        border-color: #d0d0d0;
+    }
+    body.light-mode .feature-list li strong {
+        color: #f5576c;
+    }
+    body.light-mode .warning-box {
+        background: rgba(245, 87, 108, 0.08);
+        border-color: #f5576c;
+        color: #1a1a2e;
+    }
+    
+    #lines-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+    }
+    body.light-mode #lines-canvas {
+        opacity: 0.3;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 40px 50px;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+        border: 1px solid rgba(255,255,255,0.06);
+        max-height: 95vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #4facfe transparent;
+        transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+    }
+    .container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background: #4facfe;
+        border-radius: 10px;
+    }
+    h1 {
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe, #43e97b);
+        background-size: 300% 300%;
+        animation: gradientShift 4s ease-in-out infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 5px;
+        letter-spacing: 2px;
+        transition: background 0.8s ease;
+    }
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        transition: all 0.8s ease;
+        color: #aaa;
+    }
+    .nav-menu {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        padding: 15px;
+        border-radius: 16px;
+        border: 1px solid #2a2a3a;
+        transition: all 0.8s ease;
+    }
+    .nav-btn {
+        padding: 10px 25px;
+        background: rgba(255,255,255,0.06);
+        color: #e0e0e0;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+    .nav-btn:hover {
+        background: linear-gradient(135deg, #f5576c, #4facfe);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(79, 172, 254, 0.3);
+        border-color: #4facfe;
+    }
+    .section {
+        margin-bottom: 30px;
+    }
+    .section h2 {
+        font-size: 1.6rem;
+        color: #fff;
+        border-right: 5px solid #f5576c;
+        padding-right: 15px;
+        margin-bottom: 15px;
+        transition: color 0.8s ease;
+    }
+    body.light-mode .section h2 {
+        color: #1a1a2e;
+    }
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+    }
+    .feature-list li {
+        padding: 10px 15px;
+        border-radius: 12px;
+        border: 1px solid #2a2a3a;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    .feature-list li:hover {
+        transform: translateY(-3px);
+        border-color: #4facfe;
+        box-shadow: 0 4px 20px rgba(79, 172, 254, 0.1);
+    }
+    .feature-list li strong {
+        color: #4facfe;
+    }
+    .warning-box {
+        margin-top: 20px;
+        padding: 15px 20px;
+        border-radius: 12px;
+        border-right: 4px solid #f5576c;
+        background: rgba(245, 87, 108, 0.05);
+        font-size: 0.9rem;
+    }
+    .warning-box strong {
+        color: #f5576c;
+    }
+    .back-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 30px;
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+    }
+    .back-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
+    }
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #2a2a3a;
+        font-size: 0.9rem;
+        transition: all 0.8s ease;
+        color: #666;
+    }
+    .download-section {
+        text-align: center;
+        margin: 25px 0;
+    }
+    .download-section .big-download-btn {
+        display: inline-block;
+        padding: 14px 40px;
+        background: linear-gradient(135deg, #f5576c, #f093fb);
+        color: #fff;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 25px rgba(245, 87, 108, 0.4);
+    }
+    .download-section .big-download-btn:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 35px rgba(245, 87, 108, 0.5);
+    }
+    @media (max-width: 700px) {
+        .container { padding: 20px; }
+        h1 { font-size: 1.8rem; }
+        .feature-list { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+        .feature-list li { font-size: 0.85rem; padding: 8px 12px; }
+    }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h1>🚨 تماس‌های اضطراری</h1>
+        <div class="subtitle fade-element">شماره‌های ضروری همیشه در دسترس شما</div>
+
+        <div class="nav-menu fade-element">
+            <a href="index.html" class="nav-btn">🏠 صفحه اصلی</a>
+            <a href="videos.html" class="nav-btn video-btn">🎥 ویدیوها</a>
+        </div>
+
+        <div class="section fade-element">
+            <h2>📌 درباره برنامه</h2>
+            <p style="font-size:1.05rem;">
+                در شرایط اضطراری، پیدا کردن شماره مناسب می‌تواند زمان‌بر باشد. 
+                <strong>تماس‌های اضطراری</strong> یک برنامه کاربردی برای دسترسی سریع و آسان به شماره‌های ضروری و خدمات مهم است.
+            </p>
+            <p style="font-size:1.05rem; margin-top:10px;">
+                با استفاده از این برنامه می‌توانید شماره‌های مهم و خدمات موردنیاز خود را در دسته‌بندی‌های مختلف مشاهده کرده و در صورت نیاز، به‌سرعت با آن‌ها تماس بگیرید.
+            </p>
+        </div>
+
+        <div class="section fade-element">
+            <h2>📋 امکانات برنامه</h2>
+            <ul class="feature-list">
+                <li><strong>🚑</strong> اورژانس</li>
+                <li><strong>🚓</strong> پلیس</li>
+                <li><strong>🚒</strong> آتش‌نشانی</li>
+                <li><strong>💊</strong> داروخانه</li>
+                <li><strong>🚗</strong> امداد خودرو</li>
+                <li><strong>💧</strong> امداد آب</li>
+                <li><strong>⚡</strong> امداد برق</li>
+                <li><strong>🔥</strong> امداد گاز</li>
+                <li><strong>🏙️</strong> شهرداری</li>
+                <li><strong>🛣️</strong> اطلاعات راه‌ها</li>
+                <li><strong>✈️</strong> فرودگاه</li>
+                <li><strong>🌤️</strong> هواشناسی</li>
+                <li><strong>🕌</strong> اوقات شرعی</li>
+            </ul>
+        </div>
+
+        <div class="section fade-element">
+            <h2>⭐ چرا تماس‌های اضطراری؟</h2>
+            <ul class="feature-list" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <li>✔️ دسترسی سریع به شماره‌های ضروری</li>
+                <li>✔️ طراحی ساده و کاربرپسند</li>
+                <li>✔️ دسته‌بندی مناسب خدمات مختلف</li>
+                <li>✔️ مناسب برای استفاده روزمره و مواقع ضروری</li>
+                <li>✔️ امکان دسترسی آسان به مخاطبین مهم</li>
+                <li>✔️ محیط سبک و کاربردی</li>
+            </ul>
+        </div>
+
+        <div class="download-section fade-element">
+            <a href="https://myket.ir/app/appinventor.ai_mmastudio_s_m.tamas" target="_blank" class="big-download-btn">📥 دانلود برنامه تماس‌های اضطراری</a>
+        </div>
+
+        <div class="warning-box fade-element">
+            <strong>⚠️ توجه:</strong> شماره‌های خدمات اضطراری ممکن است بسته به کشور یا منطقه متفاوت باشند. 
+            قبل از استفاده، از صحت شماره‌های نمایش‌داده‌شده اطمینان حاصل کنید.
+        </div>
+
+        <div style="text-align: center;" class="fade-element">
+            <a href="index.html" class="back-btn">🔙 بازگشت به صفحه اصلی</a>
+        </div>
+
+        <div class="footer fade-element">
+            © 2026 تمامی حقوق برای گروه لایتنینگ استودیو محفوظ است.
+        </div>
+    </div>
+    
+    <script>
+    (function() {
+        const canvas = document.createElement('canvas');
+        canvas.id = 'lines-canvas';
+        document.body.prepend(canvas);
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        const LINE_COUNT = 45;
+        const LINE_LENGTH_MIN = 0.3;
+        const LINE_LENGTH_MAX = 0.9;
+        const SPEED_MIN = 1.5;
+        const SPEED_MAX = 4.5;
+        const COLORS = [[79,172,254],[240,147,251],[245,87,108],[67,233,123],[255,215,0],[0,255,255],[255,100,200]];
+        class LightLine {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.angle = Math.random() * Math.PI * 2;
+                const lengthRatio = Math.random() * (LINE_LENGTH_MAX - LINE_LENGTH_MIN) + LINE_LENGTH_MIN;
+                this.length = lengthRatio * Math.max(w, h);
+                this.speed = Math.random() * (SPEED_MAX - SPEED_MIN) + SPEED_MIN;
+                this.thickness = Math.random() * 3 + 1.5;
+                this.baseOpacity = Math.random() * 0.3 + 0.2;
+                const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                this.r = color[0]; this.g = color[1]; this.b = color[2];
+                this.twinkleSpeed = Math.random() * 0.03 + 0.01;
+                this.twinkleOffset = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.twinkleOffset += this.twinkleSpeed;
+                const margin = this.length * 0.5;
+                if (this.x < -margin) this.x = w + margin;
+                if (this.x > w + margin) this.x = -margin;
+                if (this.y < -margin) this.y = h + margin;
+                if (this.y > h + margin) this.y = -margin;
+            }
+            draw() {
+                const twinkle = Math.sin(this.twinkleOffset) * 0.3 + 0.7;
+                const opacity = this.baseOpacity * twinkle;
+                const endX = this.x - Math.cos(this.angle) * this.length;
+                const endY = this.y - Math.sin(this.angle) * this.length;
+                const gradient = ctx.createLinearGradient(this.x, this.y, endX, endY);
+                gradient.addColorStop(0, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.9})`);
+                gradient.addColorStop(0.3, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.6})`);
+                gradient.addColorStop(0.7, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.3})`);
+                gradient.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.15})`;
+                ctx.lineWidth = this.thickness * 4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.05})`;
+                ctx.lineWidth = this.thickness * 10;
+                ctx.stroke();
+                const glowSize = this.thickness * 2.5;
+                const glowGradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowSize * 2);
+                glowGradient.addColorStop(0, `rgba(255, 255, 255, ${opacity * 0.8})`);
+                glowGradient.addColorStop(0.3, `rgba(${this.r}, ${this.g}, ${this.b}, ${opacity * 0.6})`);
+                glowGradient.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, glowSize * 2, 0, Math.PI * 2);
+                ctx.fillStyle = glowGradient;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, glowSize * 0.4, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.9})`;
+                ctx.fill();
+            }
+        }
+        let lines = [];
+        function initLines() {
+            lines = [];
+            for (let i = 0; i < LINE_COUNT; i++) {
+                lines.push(new LightLine());
+            }
+        }
+        initLines();
+        function animate() {
+            const isLight = document.body.classList.contains('light-mode');
+            const bgColor = isLight ? 'rgba(240, 242, 245, 0.15)' : 'rgba(10, 10, 21, 0.2)';
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, w, h);
+            lines.forEach(line => { line.update(); line.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                resize();
+                initLines();
+            }, 300);
+        });
+    })();
+    </script>
+    <script>
+    (function() {
+        function setTheme() {
+            const now = new Date();
+            const hours = now.getHours();
+            const body = document.body;
+            if (hours >= 6 && hours < 18) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            }
+        }
+        setTheme();
+        setInterval(setTheme, 30000);
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                setTheme();
+            }
+        });
+    })();
+    </script>
+    <script>
+    (function() {
+        const fadeElements = document.querySelectorAll('.fade-element');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -20px 0px'
+        });
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+    })();
+    </script>
+</body>
+</html>
